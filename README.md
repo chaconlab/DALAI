@@ -8,26 +8,29 @@ References
 
 - P. Chacón, F. Morán, J.F. Díaz, E. Pantos, and J.M. Andreu (1998) Low-Resolution Structures of Proteins in Solution Retrieved from X-Ray Scattering with a Genetic Algorithm, Biophys. J. 74: 2760-2775. <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9635731&amp;dopt=Abstract"><img src="https://chaconlab.org/images/publications/pubmed.jpg" alt="" align="top" border="0" /> </a><a href="PDF/bj98.pdf"><img src="https://chaconlab.org/images/publications/acrobaticon4.gif" alt="" border="0" /></a>
 
-<p>To illustrate the basic procedure to run the program her you can find several examples. In this first example the protein Beta b2-crystallin (2bb2 pdb entry) is modelled from SAXS.  The data to be downloaded is calculated from 2bb2.pdb using the Debye formula, and from this theoretical SAXS profile the size &amp; shape of this protein will be reconstructed.</p>
-<p>Please, download now the following files: </p>
+To illustrate the basic procedure to run the program her you can find several examples. In this first example the protein Beta b2-crystallin (2bb2 pdb entry) is modelled from SAXS.  The data to be downloaded is calculated from 2bb2.pdb using the Debye formula, and from this theoretical SAXS profile the size &amp; shape of this protein will be reconstructed.
+Please, download now the following files: 
 <ul style="list-style-type: circle;">
-<li>The parameter file: <a href="images/sbg/dalai_ga/dalai_ga.ini">dalai_ga.ini</a></li>
-<li>The data file: <a href="images/sbg/dalai_ga/2bb2.int">2bb2.int</a></li>
-<li>The initial search space (optional). There are to options  1) Direct generation of an ellipsoids from parameter file 2) Introduce your own conformational search space (e.g. <a href="images/sbg/dalai_ga/L162.pdb">L102.pdb)</a>. For simplicity, in this example DALAI-GA will generate a hexagonal packet of beads.</li>
+<li>The parameter file: <a href="assets/dalai_ga.ini">dalai_ga.ini</a></li>
+<li>The data file: <a href="assets/2bb2.int">2bb2.int</a></li>
+<li>The initial search space (optional). There are two options  1) Direct generation of an ellipsoids from parameter file 2) Introduce your own conformational search space (e.g. <a href="assets/L162.pdb">L102.pdb)</a>. For simplicity, in this example, DALAI-GA will generate a hexagonal packet of beads.</li>
 </ul>
-<p>That's all what is needed to start. First at all have a look on the parameter file, it looks like that:</p>
-<pre>FILEINPUT 2bb2.int  (SAXS data generated from the 2bb2 pdb entry) 
+That's all that is needed to start. First of all, have a look at the parameter file, it looks like that:
+
+```
+FILEINPUT 2bb2.int  (SAXS data generated from the 2bb2 pdb entry) 
 FILEMODEL none      (No input initial search space) 
 ELLSIZE 150 100 100    (Dimensions of the initial ellipsoid search space) 
 RADIUS 7.0          (The beads will be of 6 A radius) 
-DELTA_R 1.0         (Reduciton of R when new search space will be generated) 
+DELTA_R 1.0         (Reduction of R when new search space will be generated) 
 END_R  3.0          (maximal resolution R allowed) 
-MASS+/- 40 10       (Rejection size range in the initial population the models) 
+MASS+/- 40 10       (Rejection size range in the initial population of the models) 
 RG+/- 30 5   	    (Allowed Rg range  in the initial population ) 
-NL/NC 10 100 200 500 (The program will wait 10 generations until starts waiting for convergece for all steps except the last one, then if after 100 generations without change of the best solution will cosider convergence reached and will proceed to next resolution step, for the last resolution step the the wait will be 200 generations and the convergence considered to be reached after 500 generations without change) 
-DISPLAY 1    (Some info will show up in your screen while the soft is running)
-</pre>
-<pre> 
+NL/NC 10 100 200 500 (The program will wait 10 generations until starts waiting for convergece for all steps except the last one, then if after 100 generations without change of the best solution will consider convergence reached and will proceed to the next resolution step, for the last resolution step them the wait will be 200 generations and the convergence considered to be reached after 500 generations without change) 
+DISPLAY 1    (Some info will show up on your screen while the soft is running)
+´´´
+
+´´´
  ========================================================
   ==                                                    ==
   ==            DALAI_GA2 v3   Update 5/5/06            ==
@@ -46,23 +49,21 @@ DISPLAY 1    (Some info will show up in your screen while the soft is running)
 
     volumen 587632.811459 
  -------------------------------------
-    --&gt;Saved PDB init_confR7.0.pdb
+    Saved PDB init_confR7.0.pdb
     PAIR-PAIR TYPES 88
     RG 46.10 MassNorm 2064265 
-
-
+    
  == SAXS DATA
 
     Opened 2bb2.int ......  64 point read 
     Srange 0.000000 - 0.060001 inter 0.000938 
     Internal particle constant 0.000000  
 
-
     WARNING!!!
     Nominal SAXS resolution limit at R=4.166568
     For radius 7.000000 Smax=0.035714
     New Srange with 38 points 
-    -&gt;Smin-Smax 0.000000 - 0.035239 inter 0.000927 
+    Smin-Smax 0.000000 - 0.035239 inter 0.000927 
 
  == Generating initial random generation
      DISCART RG  802  FIT 0
@@ -98,23 +99,21 @@ DISPLAY 1    (Some info will show up in your screen while the soft is running)
 000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000
 0
-    --&gt;Saved PDB best_0.pdb
+    Saved PDB best_0.pdb
  === New Max FIT 15.6414 N 10 ===
-    --&gt;Saved PDB best.pdb
-     -&gt;Saved SAXS best.dat
+     Saved PDB best.pdb
+     Saved SAXS best.dat
  === New Max FIT 19.5908 N 11 ===
-    --&gt;Saved PDB best.pdb
-     -&gt;Saved SAXS best.dat
-</pre>
-<p>Each 10 generations the results are printed. The program will finish modelling at a given resolution when it has reached convergence. The fitting results are(best****.dat files) and the structures ofthe best models (best****.pdb files). The best configurations resulting can be displayed using rasmol:</p>
-<pre>&gt;rasmol best.pdb 
-&gt;spacefill 160
-</pre>
-<p><img style="margin: 10px 50px; vertical-align: bottom;" src="images/sbg/dalai_ga/best6.gif" width="161" height="90" /></p>
+    Saved PDB best.pdb
+    Saved SAXS best.dat 
+```
+<p>Each 10 generations the results are printed. The program will finish modelling at a given resolution when it has reached convergence. The fitting results are(best****.dat files) and the structures ofthe best models (best****.pdb files). The best configurations resulting can be displayed using rasmol (rasmol best.pdb; spacefill 160)
+
+<p><img style="margin: 10px 50px; vertical-align: bottom;" src="assets/best6.gif" width="161" height="90" /></p>
 <p>and you can see the corresponding fits using your favorite plotting program, for example using gnuplot:</p>
-<p><a href="images/plot_big.gif"><img style="float: left; margin-left: 5px; margin-right: 5px;" src="images/sbg/dalai_ga/plot_small.gif" width="180" height="126" /></a>&gt;gnuplot <br />gnuplot&gt;  set logscale y <br />gnuplot&gt;  set xlabel "S(A)" <br />gnuplot&gt;  set ylabel "I(S)" <br />gnuplot&gt; plot "best.dat" u 1:2 w l, "best.dat" u 1:3 w l</p>
-<p> </p>
-<p>Once the convergence was achived, the program automatically generates a new configurational space with smaller bead radius from the best result previously obtained.</p>
+<p><a href="images/plot_big.gif"><img style="float: left; margin-left: 5px; margin-right: 5px;" src="assets/plot_small.gif" width="180" height="126" /></a>&gt;gnuplot <br />gnuplot&gt;  set logscale y <br />gnuplot&gt;  set xlabel "S(A)" <br />gnuplot&gt;  set ylabel "I(S)" <br />gnuplot&gt; plot "best.dat" u 1:2 w l, "best.dat" u 1:3 w l</p>
+
+Once the converges, the program automatically generates a new configurational space with a smaller bead radius from the best previous results.</p>
 <pre>==  MASK PROCEDURE 
     146 hexagonal beads from box 479 of best config with 23 
     PAIR-PAIR TYPES 69 
@@ -122,8 +121,8 @@ DISPLAY 1    (Some info will show up in your screen while the soft is running)
     --&gt;Saved PDB init_confR5.0.pdb
 </pre>
 <p>the configurational space is saved</p>
-<p><img style="margin: 10px 50px;" src="images/sbg/dalai_ga/init5.gif" width="134" height="100" /></p>
-<p>the SAXS range take is modified according to the bead size used and a new initial population is generated</p>
+<p><img style="margin: 10px 50px;" src="assets/init5.gif" width="134" height="100" /></p>
+<p> The SAXS range take is modified according to the bead size used and a new initial population is generated</p>
 <pre>    WARNING!!! 
     Nominal SAXS resolution limit at R=4.199422 
     For radius 5.000000 Smax=0.050000 
@@ -135,17 +134,17 @@ DISPLAY 1    (Some info will show up in your screen while the soft is running)
      DISCART RG  4980  FIT 2001 
      AVE RG  21.19  FIT 4.31
 </pre>
-<p>This refinment is repeated until desired resolution (parameter END_R in dalai_ga.ini), or automatically when the search space gets larger than 2,000 beads. At the end, one should have a complete set of models/fits (files *.pdb/*.dat), including the final results best.pdb and the corresponding fits best.pdb. The model with 3A radius beads looks like this:</p>
-<p><img style="margin: 10px 80px;" src="images/sbg/dalai_ga/bestend.gif" width="188" height="120" /></p>
+<p>This refinement is repeated until the desired resolution (parameter END_R in dalai_ga.ini), or automatically when the search space gets larger than 2,000 beads. At the end, one should have a complete set of models/fits (files *.pdb/*.dat), including the final results best.pdb and the corresponding fits best.pdb. The model with 3A radius beads looks like this:</p>
+<p><img style="margin: 10px 80px;" src="assets/bestend.gif" width="188" height="120" /></p>
 <p>That is, the structure obtained is convergent with the original crystallographic structure(2bb2 pdb entry), at a lower resolution</p>
-<p><img style="margin: 10px 100px;" src="images/sbg/dalai_ga/2bb2.gif" width="164" height="100" /></p>
+<p><img style="margin: 10px 100px;" src="assets/2bb2.gif" width="164" height="100" /></p>
 <p>As a second example,  we use the simulated SAXS profile produced by program DALAI using all 1914 atoms in the 1cfb.pdb file. We limit the range to be fitted to S=0.06A <sup>-1</sup> , corresponding to real space resolution of 1/2S= 8.3A . Figure 7 shows a configurational space of 254 spheres of radius 6A .The spheres are hexagonally packed to provide the best mass sampling and are all within an ellipsoid of revolution of major/minor axes of 100/70A . This space is large enough to contain the crystal structure of two adjacent fibronectin type III repeats from the Drosophila neural cell adhesion molecule neuroglian (Huber et al. 1994, 1cfb entry in Brookhaven database). </p>
 <table cellspacing="0" cellpadding="0">
 <tbody>
 <tr>
-<td><center><img src="images/sbg/dalai_ga/image15.gif" width="182" height="138" /></center></td>
-<td><center><img src="images/sbg/dalai_ga/image16.gif" /></center></td>
-<td><center><img src="images/sbg/dalai_ga/image17.gif" width="181" height="138" /></center></td>
+<td><center><img src="assets/image15.gif" width="182" height="138" /></center></td>
+<td><center><img src="assets/image16.gif" /></center></td>
+<td><center><img src="assets/image17.gif" width="181" height="138" /></center></td>
 </tr>
 <tr>
 <td><center>a</center></td>
@@ -154,30 +153,30 @@ DISPLAY 1    (Some info will show up in your screen while the soft is running)
 </tr>
 </tbody>
 </table>
-<p>Figure 7. a) The configurational space of 254 spheres of radius 6A . b) and c) Connoly surface representation of the configuration space with ribbon representation of target structure embedded in it at two orthogonal projections.</p>
-<p>Figure 8 shows the SAXS fit (fit and target profile can hardly be distinguished) and the average fitness of the parent population with the values for the best fits at a given iteration superimposed as spikes. Successively better fits improve the "genetic stock" until little further improvement can be achieved. Despite the enormous size of the configuration space (2<sup>254-1</sup>) the pertinent shape features of the structure at that resolution have been quickly identified. Only 29 spheres out of the 254 are retained. It is also clear that the size of the spheres is too large to accommodate fine details in the periphery of the molecule. This is reflected in ripples in the residual curve in Figure 8.</p>
+Figure 7. a) The configurational space of 254 spheres of radius 6A . b) and c) Connoly surface representation of the configuration space with ribbon representation of the target structure embedded in it at two orthogonal projections.
+Figure 8 shows the SAXS fit (fit and target profile can hardly be distinguished) and the average fitness of the parent population with the values for the best fits at a given iteration superimposed as spikes. Successively better fits improve the "genetic stock" until little further improvement can be achieved. Despite the enormous size of the configuration space (2<sup>254-1</sup>) the pertinent shape features of the structure at that resolution have been quickly identified. Only 29 spheres out of the 254 are retained. It is also clear that the size of the spheres is too large to accommodate fine details in the periphery of the molecule. This is reflected in ripples in the residual curve in Figure 8.
 <table cellspacing="0" cellpadding="0">
 <tbody>
 <tr>
-<td><center><img src="images/sbg/dalai_ga/image18.gif" width="297" height="199" /></center></td>
-<td><center><img src="images/sbg/dalai_ga/image19.gif" width="299" height="201" /></center></td>
+<td><center><img src="assets/image18.gif" width="297" height="199" /></center></td>
+<td><center><img src="assets/dalai_ga/image19.gif" width="299" height="201" /></center></td>
 </tr>
 </tbody>
 </table>
 <p> Figure 8. Top: Best fitted profile and residual (dashed line x10) after 330 iterations. The residual (dotted line) is scaled x10. Bottom: Average population fitness as a function of iteration number. The spikes superimposed on the smooth graph give the fit value of the best fit attained at a given iteration number.</p>
-<center><img src="images/sbg/dalai_ga/image20.gif" width="177" height="123" /><img src="images/sbg/dalai_ga/image21.gif" width="177" height="123" /><img src="images/sbg/dalai_ga/image22.gif" width="177" height="123" /></center>
+<center><img src="assets/image20.gif" width="177" height="123" /><img src="assets/image21.gif" width="177" height="123" /><img src="assets/image22.gif" width="177" height="123" /></center>
 <p>Figure 9.Three projections of the fitted structure with the crystal structure shown in ribbon representation and the best fit of 6A spheres as a Conolly surface produced by program Insight II.</p>
 <p>Increase in the quality of fit can now only be achieved by increasing the resolution of the configuration space (smaller spheres in a finer grid). Alternatively, as the low resolution shape of the structure is now known, the best fitted structure can now be used as a "mask", augmented by a margin around it and imposed on a finer resolution configuration space to define a subset of the spheres that would be contained in the original ellipsoid. This reduces the memory and processing time requirements significantly without loss in information to be extracted (Figure 10).</p>
-<center><img src="images/sbg/dalai_ga/image23.gif" width="168" height="118" /><img src="images/sbg/dalai_ga/image24.gif" width="168" height="118" /><img src="images/sbg/dalai_ga/image25.gif" width="168" height="118" /></center><center><img src="images/sbg/dalai_ga/image26.gif" width="168" height="118" /><img src="images/sbg/dalai_ga/image27.gif" width="168" height="118" /><img src="images/sbg/dalai_ga/image28.gif" width="168" height="118" /></center>
+<center><img src="assets/image23.gif" width="168" height="118" /><img src="assets/image24.gif" width="168" height="118" /><img src="assets/image25.gif" width="168" height="118" /></center><center><img src="assets/image26.gif" width="168" height="118" /><img src="assets/image27.gif" width="168" height="118" /><img src="assets/image28.gif" width="168" height="118" /></center>
 <p>Figure 10 Top: Three orthogonal projections of finer resolution configuration space of 536 spheres of radius R=3A produced by adding a surface layer of 12A on the best fit from the previous run. Bottom: The best fitted structure (F=143) obtained by rerunning the algorithm.</p>
 <p>If you feel already comfortable , it is time  to try to model real datasets. Two test examples are: </p>
 <ul>
 <ul>A) Troponin with 2 high affinity sites Calcium sites liganded:</ul>
 </ul>
-<p><a href="downloads/Tools/DALAI_GA/ca2mg0.zip">ca2mg0.zip</a></p>
+<p><a href="assets/ca2mg0.zip">ca2mg0.zip</a></p>
 <ul>Data cortesy of Prof. T. Fujisawa (Fujisawa et al., J. Biochem Tokio 105:377-383, 1989. Fujisawa et al., J. Biochem. Tokio 107:343-351. 1990).</ul>
 <ul>
 <ul>B) The Beta4 fragment of alfa-beta 4 Integrin:</ul>
 </ul>
-<p><a href="downloads/Tools/DALAI_GA/integrin.zip">integrin.zip</a></p>
+<p><a href="assets/DALAI_GA/integrin.zip">integrin.zip</a></p>
 <ul>Protein kindly provided by Dr. J.M. De Pereda (de Pereda et al., EMBO J. 18:4087-4095, 1999): Now you may try with your own data and search spaces, best luck and let us know your results!. </ul>
