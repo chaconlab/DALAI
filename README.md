@@ -136,14 +136,14 @@ Once the converges, the program automatically generates a new configurational sp
 </pre>
 <p>This refinement is repeated until the desired resolution (parameter END_R in dalai_ga.ini), or automatically when the search space gets larger than 2,000 beads. At the end, one should have a complete set of models/fits (files *.pdb/*.dat), including the final results best.pdb and the corresponding fits best.pdb. The model with 3A radius beads looks like this:</p>
 <p><img style="margin: 10px 80px;" src="assets/bestend.gif" width="188" height="120" /></p>
-<p>That is, the structure obtained is convergent with the original crystallographic structure(2bb2 pdb entry), at a lower resolution</p>
+<p>That is, the structure obtained resembles the original crystallographic structure(2bb2 pdb entry), at a lower resolution</p>
 <p><img style="margin: 10px 100px;" src="assets/2bb2.gif" width="164" height="100" /></p>
-<p>As a second example,  we use the simulated SAXS profile produced by program DALAI using all 1914 atoms in the 1cfb.pdb file. We limit the range to be fitted to S=0.06A <sup>-1</sup> , corresponding to real space resolution of 1/2S= 8.3A . Figure 7 shows a configurational space of 254 spheres of radius 6A .The spheres are hexagonally packed to provide the best mass sampling and are all within an ellipsoid of revolution of major/minor axes of 100/70A . This space is large enough to contain the crystal structure of two adjacent fibronectin type III repeats from the Drosophila neural cell adhesion molecule neuroglian (Huber et al. 1994, 1cfb entry in Brookhaven database). </p>
+<p>As a second example,  we use the simulated SAXS profile produced by program DALAI using all 1914 atoms in the 1cfb.pdb file. We limit the range to be fitted to S=0.06A <sup>-1</sup>, corresponding to real space resolution of 1/2S= 8.3A . Figure 7 shows a configurational space of 254 spheres of radius 6A .The spheres are hexagonally packed to provide the best mass sampling and are all within an ellipsoid of revolution of major/minor axes of 100/70A . This space is large enough to contain the crystal structure of two adjacent fibronectin type III repeats from the Drosophila neural cell adhesion molecule neuroglian (Huber et al. 1994, 1cfb entry in Brookhaven database). </p>
 <table cellspacing="0" cellpadding="0">
 <tbody>
 <tr>
 <td><center><img src="assets/image15.gif" width="182" height="138" /></center></td>
-<td><center><img src="assets/image16.gif" /></center></td>
+<td><center><img src="assets/image16.gif" width="182" height="138"/></center></td>
 <td><center><img src="assets/image17.gif" width="181" height="138" /></center></td>
 </tr>
 <tr>
@@ -159,16 +159,42 @@ Figure 8 shows the SAXS fit (fit and target profile can hardly be distinguished)
 <tbody>
 <tr>
 <td><center><img src="assets/image18.gif" width="297" height="199" /></center></td>
-<td><center><img src="assets/dalai_ga/image19.gif" width="299" height="201" /></center></td>
+<td><center><img src="assets/image19.gif" width="299" height="201" /></center></td>
 </tr>
 </tbody>
 </table>
-<p> Figure 8. Top: Best fitted profile and residual (dashed line x10) after 330 iterations. The residual (dotted line) is scaled x10. Bottom: Average population fitness as a function of iteration number. The spikes superimposed on the smooth graph give the fit value of the best fit attained at a given iteration number.</p>
-<center><img src="assets/image20.gif" width="177" height="123" /><img src="assets/image21.gif" width="177" height="123" /><img src="assets/image22.gif" width="177" height="123" /></center>
-<p>Figure 9.Three projections of the fitted structure with the crystal structure shown in ribbon representation and the best fit of 6A spheres as a Conolly surface produced by program Insight II.</p>
-<p>Increase in the quality of fit can now only be achieved by increasing the resolution of the configuration space (smaller spheres in a finer grid). Alternatively, as the low resolution shape of the structure is now known, the best fitted structure can now be used as a "mask", augmented by a margin around it and imposed on a finer resolution configuration space to define a subset of the spheres that would be contained in the original ellipsoid. This reduces the memory and processing time requirements significantly without loss in information to be extracted (Figure 10).</p>
-<center><img src="assets/image23.gif" width="168" height="118" /><img src="assets/image24.gif" width="168" height="118" /><img src="assets/image25.gif" width="168" height="118" /></center><center><img src="assets/image26.gif" width="168" height="118" /><img src="assets/image27.gif" width="168" height="118" /><img src="assets/image28.gif" width="168" height="118" /></center>
-<p>Figure 10 Top: Three orthogonal projections of finer resolution configuration space of 536 spheres of radius R=3A produced by adding a surface layer of 12A on the best fit from the previous run. Bottom: The best fitted structure (F=143) obtained by rerunning the algorithm.</p>
+<p> Figure 8. Top: Best fitted profile and residual (dashed line x10) after 330 iterations. The residual (dotted line) is scaled x10. Bottom: Average population fitness as a function of iteration number. The spikes superimposed on the smooth graph give the fit value of the best fit attained at a given iteration number.
+
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><img src="assets/image20.gif" width="177" height="123" /></td>
+<td><img src="assets/image21.gif" width="177" height="123" /></td>
+<td><img src="assets/image22.gif" width="177" height="123" /></td>
+</tr>
+</tbody>
+</table>
+
+
+
+Figure 9.Three projections of the fitted structure with the crystal structure shown in ribbon representation and the best fit of 6A spheres as a Conolly surface produced by program Insight II.
+
+To improve the fit we can now increasing the resolution of the configuration space (smaller spheres in a finer grid). Alternatively, as the low resolution shape of the structure is now known, the best fitted structure can now be used as a "mask", augmented by a margin around it and imposed on a finer resolution configuration space to define a subset of the spheres that would be contained in the original ellipsoid. This reduces the memory and processing time requirements significantly without loss in information to be extracted (Figure 10).
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><img src="assets/image23.gif"  width="168" height="118" /></td>
+<td><img src="assets/image24.gif"  width="168" height="118"  /></td>
+<td><img src="assets/image25.gif"  width="168" height="118"  /></td>
+</tr>
+ <tr>
+<td><img src="assets/image26.gif"  width="168" height="118" /></td>
+<td><img src="assets/image27.gif"  width="168" height="118"  /></td>
+<td><img src="assets/image28.gif"  width="168" height="118"  /></td>
+</tr></tbody>
+</table>
+
+Figure 10 Top: Three orthogonal projections of finer resolution configuration space of 536 spheres of radius R=3A produced by adding a surface layer of 12A on the best fit from the previous run. Bottom: The best fitted structure (F=143) obtained by rerunning the algorithm.
 <p>If you feel already comfortable , it is time  to try to model real datasets. Two test examples are: </p>
 <ul>
 <ul>A) Troponin with 2 high affinity sites Calcium sites liganded:</ul>
