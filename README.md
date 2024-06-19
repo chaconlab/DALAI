@@ -1,4 +1,4 @@
-# DALAI
+# DALAI-GA
 
 This is a pioneering method for ab initio model analysis of X-ray solution scattering. The method consists of fitting the scattering profile computed from sphere packet models of the molecule, using the Debye formula. The bead models are optimized using a genetic algorithm that searches the huge space of possible mass distributions and evolves convergent models. The current DALAI_GA version 3 (2006) is a slightly improved genetic algorithm from the original implementation (1998...last century!). We still encourage further applications of this vintage method because it works!
 
@@ -111,7 +111,17 @@ DISPLAY 1    (Some info will show up on your screen while the soft is running)
 
 <p><img style="margin: 10px 50px; vertical-align: bottom;" src="assets/best6.gif" width="161" height="90" /></p>
 <p>and you can see the corresponding fits using your favorite plotting program, for example using gnuplot:</p>
-<p><a href="images/plot_big.gif"><img style="float: left; margin-left: 5px; margin-right: 5px;" src="assets/plot_small.gif" width="180" height="126" /></a>&gt;gnuplot <br />gnuplot&gt;  set logscale y <br />gnuplot&gt;  set xlabel "S(A)" <br />gnuplot&gt;  set ylabel "I(S)" <br />gnuplot&gt; plot "best.dat" u 1:2 w l, "best.dat" u 1:3 w l</p>
+
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><center><img src="assets/plot_small.gif" width="182" height="138" /></center></td>
+<td>&gt;gnuplot <br />gnuplot&gt;  set logscale y <br />gnuplot&gt;  set xlabel "S(A)" <br />gnuplot&gt;  set ylabel "I(S)" <br />gnuplot&gt; plot "best.dat" u 1:2 w l, "best.dat" u 1:3 w l</td>
+</tr>
+</tbody>
+</table>
+
+
 
 Once the converges, the program automatically generates a new configurational space with a smaller bead radius from the best previous results.</p>
 <pre>==  MASK PROCEDURE 
